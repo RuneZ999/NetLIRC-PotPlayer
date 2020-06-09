@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<!--Made by Neumann Gregor --> 
+<head>
+ <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Pot Player Web GUI</title>
+</head>
+<body>
+<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"> -->
+<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
+<link rel="stylesheet" href="bootstrap.min.css">
+<link rel="stylesheet" href="font-awesome.min-fontello-embedded.css">
+<script src="NoSleep.min.js"></script>
+	<script>
+// AJAX get request
+function httpGet(theUrl)
+{
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.open( "GET", theUrl, false ); // false for synchronous request
+    xmlHttp.send( null );
+	//if (xmlHttp.status != 200) alert(xmlHttp.status);
+	if (xmlHttp.responseText.trim()!="done"){ // done is the message in AHK 
+		//alert(xmlHttp.responseText);
+		message_display(xmlHttp.responseText)
+		}
+    return xmlHttp.responseText;
+}
+//Highlighting Function of text based on backend response
+function highlight(objID,color){
+	var duration = 200; // 0.2 seconds
+	
+	var orig = objID.style.color;
+	objID.style.color = color;
+	var doAfterDuration = function() { 
+		objID.style.color = orig;
+	}
+	setTimeout( doAfterDuration, duration); //non blocking timer
+}
+// msg
+function message_display(err_msg) {
+  document.getElementById("messages").innerHTML = err_msg;
+  setTimeout(function() {
+    document.getElementById("messages").innerHTML = " ";
+  }, 1000);
+}
+	</script>
+<style type="text/css">
+   body { background: #007bff !important; } /* Adding !important forces the browser to overwrite the default style applied by Bootstrap btn-primary = #007bff*/
+</style>
+<p id="messages" style="color:white; text-align:center; font-size : 15px;"></p>
+<div class="container-fluid">
+  <div class="row">
+    <button type="button" class="btn btn-primary col p-2" id="id_1" onclick='(httpGet("/mute")== "done") ? highlight(id_1,"#000"):highlight(id_1,"#f00");'><i class="icon-volume-off"></i> Mute</button>
+    <button type="button" class="btn btn-primary col p-2" id="id_2" onclick='(httpGet("/power")== "done") ? highlight(id_2,"#000"):highlight(id_2,"#f00");'><i class="icon-off"></i> Power</button>
+  </div>
+  <div class="row">
+    <button type="button" class="btn btn-primary col p-2" id="id_3" onclick='(httpGet("/1")== "done") ? highlight(id_3,"#000"):highlight(id_3,"#f00");'><i class="icon-sun"></i> Brightness Reset</button>
+    <button type="button" class="btn btn-primary col p-2" id="id_4" onclick='(httpGet("/2")== "done") ? highlight(id_4,"#000"):highlight(id_4,"#f00");'><i class="icon-sun"></i> <i class="icon-minus"></i> Brightness -1%</button>
+    <button type="button" class="btn btn-primary col p-2" id="id_5" onclick='(httpGet("/3")== "done") ? highlight(id_5,"#000"):highlight(id_5,"#f00");'><i class="icon-sun"></i> <i class="icon-plus"></i> Brightness +1%</button>
+  </div>
+  <div class="row">
+    <button type="button" class="btn btn-primary col p-2" id="id_6" onclick='(httpGet("/4")== "done") ? highlight(id_6,"#000"):highlight(id_6,"#f00");'><i class="icon-left-circled2"></i> Move To Desktop Left</button>
+    <button type="button" class="btn btn-primary col p-2" id="id_7" onclick='(httpGet("/6")== "done") ? highlight(id_7,"#000"):highlight(id_7,"#f00");'><i class="icon-right-circled2"></i> Move To Desktop Right</button>
+  </div>
+  <div class="row">
+    <button type="button" class="btn btn-primary col p-2" id="id_8" onclick='(httpGet("/7")== "done") ? highlight(id_8,"#000"):highlight(id_8,"#f00");'><i class="icon-to-start-alt"></i> Play Previous Item</button> 
+    <button type="button" class="btn btn-primary col p-2" id="id_9" onclick='(httpGet("/9")== "done") ? highlight(id_9,"#000"):highlight(id_9,"#f00");'><i class="icon-to-end-alt"></i> Play Next Item</button>  
+  </div>
+  <div class="row">
+    <button type="button" class="btn btn-primary col p-2" id="id_10" onclick='(httpGet("/green")== "done") ? highlight(id_10,"#000"):highlight(id_10,"#f00");'><i class="icon-resize-full-alt"></i> Fullscreen</button> 
+    <button type="button" class="btn btn-primary col p-2" id="id_11" onclick='(httpGet("/red")== "done") ? highlight(id_11,"#000"):highlight(id_11,"#f00");'><i class="icon-attention"></i> Boss Key</button>
+  </div>
+  <div class="row">
+    <button type="button" class="btn btn-primary col p-2" id="id_12" onclick='(httpGet("/up")== "done") ? highlight(id_12,"#000"):highlight(id_12,"#f00");'><i class="icon-volume-up"></i> Up</button> 
+  </div>
+  <div class="row">
+    <button type="button" class="btn btn-primary col p-2" id="id_13" onclick='(httpGet("/left")== "done") ? highlight(id_13,"#000"):highlight(id_13,"#f00");'><i class="icon-fast-bw"></i> Left</button>
+	<button type="button" class="btn btn-primary col p-2" id="id_14" onclick='(httpGet("/ok")== "done") ? highlight(id_14,"#000"):highlight(id_14,"#f00");'><i class="icon-play"></i> <i class="icon-pause"></i> OK</button>
+    <button type="button" class="btn btn-primary col p-2" id="id_15" onclick='(httpGet("/right")== "done") ? highlight(id_15,"#000"):highlight(id_15,"#f00");'><i class="icon-fast-fw"></i> Right</button>
+  </div>
+  <div class="row">
+	<button type="button" class="btn btn-primary col p-2" id="id_16" onclick='(httpGet("/sub")== "done") ? highlight(id_16,"#000"):highlight(id_16,"#f00");'><i class="icon-cc"></i> Cycle Subtitles</button>
+    <button type="button" class="btn btn-primary col p-2" id="id_17" onclick='(httpGet("/down")== "done") ? highlight(id_17,"#000"):highlight(id_17,"#f00");'><i class="icon-volume-down"></i> Down</button>
+	<button type="button" class="btn btn-primary col p-2" id="id_18" onclick='(httpGet("/stop")== "done") ? highlight(id_18,"#000"):highlight(id_18,"#f00");'><i class="icon-stop"></i> Stop</button>
+  </div>
+    </div>
+</div>
+<!-- "Screnn on" feature based on NoSleep.js-->
+<input type="button" id="toggle" class="btn btn-primary col" value="Screen on is disabled" style="font-size : 15px;"/>
+	    <script>
+      var noSleep = new NoSleep();
+
+      var wakeLockEnabled = false;
+      var toggleEl = document.querySelector("#toggle");
+      toggleEl.addEventListener('click', function() {
+        if (!wakeLockEnabled) {
+          noSleep.enable(); // keep the screen on!
+          wakeLockEnabled = true;
+          toggleEl.value = "Screen on is enabled";
+		  //toggleEl.style.color = 'black';
+		  toggleEl.style.background = "#28a745"; //btn-success
+        } else {
+          noSleep.disable(); // let the screen turn off.
+          wakeLockEnabled = false;
+          toggleEl.value = "Screen on is disabled";
+		  //toggleEl.style.color = 'white';
+		  toggleEl.style.background = "#007bff"; //btn-primary
+        }
+      }, false);
+    </script>
+</body>
+</html>
