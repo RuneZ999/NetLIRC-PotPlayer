@@ -2,7 +2,7 @@
 
 # NetLIRC PotPlayer
 
-#####Made by Neumann Gregor
+Made by Neumann Gregor
 
 This is a AHK [https://www.autohotkey.com](https://www.autohotkey.com) script that offers a remote control on your mobile devices, or anything that has a web browser. It uses HTML5, CSS3, JavaScript and AJAX along the AHK, still you only need to have AHK installed only.
 
