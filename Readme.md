@@ -12,10 +12,12 @@ This script offers remote control over HTTP Get calls (curl, Alexa, HomeAssistan
 
 • **AutoHotKey (AHK)**
     [AHKhttp](AHKhttp.ahk), I use a modified version that fixes a memory leak called [AHKhttp_MemoryLeakFix](AHKhttp_MemoryLeakFix.ahk)
+    
     [AHKsock](AHKsock.ahk)
     
 • **CSS**
     [Bootstrap v4.1.0](bootstrap.min.css)
+    
     [Font Awesome fontello selection](font-awesome.min-fontello-embedded.css)
     
 • **JavaScript**
